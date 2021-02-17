@@ -1,0 +1,3 @@
+module StanQuap
+
+end # module
