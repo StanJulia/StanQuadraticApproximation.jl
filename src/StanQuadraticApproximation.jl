@@ -1,4 +1,4 @@
-module StanQuap
+module StanQuadraticApproximation
 
 using Reexport
 

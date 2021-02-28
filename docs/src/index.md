@@ -1,3 +1,3 @@
-# StanQuap
+# StanQuadraticApproximation
 
 *Documentation goes here.*
