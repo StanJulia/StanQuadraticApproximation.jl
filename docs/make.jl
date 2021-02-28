@@ -1,10 +1,10 @@
-using Documenter, StanQuadraticApproximation
+using Documenter, StanQuap
 
 makedocs(
-    modules = [StanQuadraticApproximation],
+    modules = [StanQuap],
     format = Documenter.HTML(; prettyurls = get(ENV, "CI", nothing) == "true"),
     authors = "Rob J Goedman",
-    sitename = "StanQuadraticApproximation.jl",
+    sitename = "StanQuap.jl",
     pages = Any["index.md"]
     # strict = true,
     # clean = true,
@@ -12,6 +12,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/goedman/StanQuadraticApproximation.jl.git",
+    repo = "github.com/goedman/StanQuap.jl.git",
     push_preview = true
 )

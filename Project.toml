@@ -1,4 +1,4 @@
-name = "StanQuadraticApproximation"
+name = "StanQuap"
 uuid = "e4723793-2808-4fc5-8a98-c57f4c160c53"
 authors = ["Rob J Goedman <goedman@icloud.com>"]
 version = "0.1.0"

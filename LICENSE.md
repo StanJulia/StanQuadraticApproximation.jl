@@ -1,4 +1,4 @@
-The StanQuadraticApproximation.jl package is licensed under the MIT "Expat" License:
+The StanQuap.jl package is licensed under the MIT "Expat" License:
 
 > Copyright (c) 2021: Rob J Goedman.
 >

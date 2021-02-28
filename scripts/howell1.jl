@@ -1,4 +1,4 @@
-using CSV, DataFrames, StanQuadraticApproximation, StanOptimize
+using CSV, DataFrames, StanQuap, StanOptimize
 
 ProjDir = @__DIR__
 

@@ -1,6 +1,6 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-StanQuadraticApproximation = "e4723793-2808-4fc5-8a98-c57f4c160c53"
+StanQuap = "e4723793-2808-4fc5-8a98-c57f4c160c53"
 
 [compat]
 Documenter = "~0.24"
