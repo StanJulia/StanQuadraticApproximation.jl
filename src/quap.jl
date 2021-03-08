@@ -1,6 +1,24 @@
-using Statistics, Distributions, DataFrames, NamedTupleTools
-using StanSample, OrderedCollections
+"""
 
+Compute the quadratic approximation to the posterior distribution.
+
+$(SIGNATURES)
+
+### Required arguments
+```julia
+* `name::String`                : Name for SampleModel
+* `model::String`               : Stan Language model
+``` 
+
+### Optional arguments
+```julia
+* `data`                        : Data for model (NamedTuple or Duct)
+* `init`                        : Initial values for parameters (NamedTuple or Dict)
+``` 
+
+In general using `init` results in better behavior.
+
+"""
 function stan_quap(
     name::AbstractString,
     model::AbstractString;
@@ -32,6 +50,26 @@ function stan_quap(
     end
 end
 
+"""
+
+Compute the quadratic approximation to the posterior distribution.
+
+$(SIGNATURES)
+
+### Required arguments
+```julia
+* `name::String`                : Name for SampleModel
+* `model::String`               : Stan Language model
+``` 
+
+### Optional arguments
+```julia
+* `data`                        : Data for model (NamedTuple or Duct)
+* `init`                        : Initial values for parameters (NamedTuple or Dict)
+``` 
+
+Not exported
+"""
 function quap(
     sm_sam::SampleModel, 
     optim::Dict,
@@ -72,5 +110,4 @@ function quap(
 end
 
 export
-    stan_quap,
-    quap
+    stan_quap

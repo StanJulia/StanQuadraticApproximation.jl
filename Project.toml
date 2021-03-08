@@ -1,12 +1,13 @@
 name = "StanQuap"
 uuid = "e4723793-2808-4fc5-8a98-c57f4c160c53"
 authors = ["Rob J Goedman <goedman@icloud.com>"]
-version = "0.1.1"
+version = "1.0.0"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 MonteCarloMeasurements = "0987c9cc-fe09-11e8-30f0-b96dd679fdca"
 NamedTupleTools = "d9ec5142-1e00-5aa0-9d6a-321866360f50"
 OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
@@ -22,7 +23,7 @@ DataFrames = "0.22"
 Distributions = "0.24"
 MonteCarloMeasurements = "0.10"
 NamedTupleTools = "0.13"
-OrderedCollections ="1.4"
+OrderedCollections = "1.4"
 Reexport = "1.0"
 StanBase = "2.2"
 StanOptimize = "2.2"
