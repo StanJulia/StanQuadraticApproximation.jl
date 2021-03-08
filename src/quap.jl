@@ -1,7 +1,7 @@
 using Statistics, Distributions, DataFrames, NamedTupleTools
 using StanSample, OrderedCollections
 
-function quap(
+function stan_quap(
     name::AbstractString,
     model::AbstractString;
     kwargs...)
@@ -72,4 +72,5 @@ function quap(
 end
 
 export
-  quap
+    stan_quap,
+    quap
