@@ -28,5 +28,12 @@ model {
 data = (N = size(df, 1), h = df.height)
 init = (mu = 160.0, sigma = 10.0)
 
-qm, sm, om = quap("s4.1s", stan4_1; data, init)
+qm, sm, om = stan_quap("s4.1s", stan4_1; data, init)
+
+println()
 qm |> display
+println()
+
+println()
+om.optim |> display
+println()
