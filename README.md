@@ -1,17 +1,21 @@
 # StanQuap.jl
 
-![Lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)<!--
-![Lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
-![Lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)
-![Lifecycle](https://img.shields.io/badge/lifecycle-retired-orange.svg)
-![Lifecycle](https://img.shields.io/badge/lifecycle-archived-red.svg)
-![Lifecycle](https://img.shields.io/badge/lifecycle-dormant-blue.svg) -->
-[![Build Status](https://github.com/stanjulia/StanQuap.jl/workflows/CI/badge.svg?branch=master)](https://github.com/stanjulia/StanQuap.jl)
+| **Project Status**          |  **Build Status** |
+|:---------------------------:|:-----------------:|
+|![][project-status-img] | ![][CI-build] |
 
-<!--
-[![Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://StanJulia.github.io/StanQuap.jl/stable)
-[![Documentation](https://img.shields.io/badge/docs-master-blue.svg)](https://StanJulia.github.io/StanQuap.jl/dev)
--->
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://stanjulia.github.io/StanQuap.jl/latest
+
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://stanjulia.github.io/StanQuap.jl/stable
+
+[CI-build]: https://github.com/stanjulia/StanQuap.jl/workflows/CI/badge.svg?branch=master
+
+[issues-url]: https://github.com/stanjulia/StanQuap.jl/issues
+
+[project-status-img]: https://img.shields.io/badge/lifecycle-wip-orange.svg
+
 
 ## Purpose of package
 
