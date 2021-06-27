@@ -16,7 +16,6 @@
 
 [project-status-img]: https://img.shields.io/badge/lifecycle-wip-orange.svg
 
-
 ## Purpose of package
 
 This package is created to simplify the usage of quadratic approximations in [StatisticalRethinking.jl](https://github.com/StatisticalRethinkingJulia).
