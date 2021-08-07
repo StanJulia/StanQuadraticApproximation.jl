@@ -75,7 +75,7 @@ function quap(
     optim::Dict,
     cnames::Vector{String})
 
-    samples = read_samples(sm_sam; output_format=:dataframe)
+    samples = read_samples(sm_sam, :dataframe)
     
     n = Symbol.(names(samples))
     coefnames = tuple(n...,)
