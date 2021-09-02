@@ -1,7 +1,7 @@
 name = "StanQuap"
 uuid = "e4723793-2808-4fc5-8a98-c57f4c160c53"
 authors = ["Rob J Goedman <goedman@icloud.com>"]
-version = "1.0.7"
+version = "1.0.8"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
