@@ -1,12 +1,10 @@
 module StanQuap
 
-using Reexport
-
-@reexport using StanOptimize, StanSample
-@reexport using CSV, DataFrames, Distributions
-@reexport using NamedTupleTools, MonteCarloMeasurements
-@reexport using DocStringExtensions, Statistics
-@reexport using OrderedCollections
+using StatsBase, StanOptimize, StanSample
+using CSV, DataFrames, Distributions
+using NamedTupleTools, MonteCarloMeasurements
+using DocStringExtensions, Statistics
+using OrderedCollections, LinearAlgebra
 
 include("quap.jl")
 

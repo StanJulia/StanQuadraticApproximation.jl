@@ -1,3 +1,16 @@
+import StatsBase: stderror, sample
+
+struct QuapResult{
+       N <: NamedTuple
+} <: StatsBase.StatisticalModel
+       coef :: N
+       vcov :: Array{Float64, 2}
+       converged :: Bool
+       distr :: Union{Normal, MvNormal}
+       params :: Array{Symbol, 1}
+end
+
+
 """
 
 Compute the quadratic approximation to the posterior distribution.
@@ -22,6 +35,7 @@ In general using `init` results in better behavior.
 function stan_quap(
     name::AbstractString,
     model::AbstractString;
+    return_nt=true,
     kwargs...)
 
 
@@ -43,7 +57,7 @@ function stan_quap(
     end
 
     if success(rc2)
-        qm = quap(sm, optim, cnames)
+        qm = quap(sm, optim, cnames; return_nt)
         return((qm, sm, (optim=optim, cnames=cnames)))
     else
         return((nothing, sm, nothing))
@@ -73,7 +87,8 @@ Not exported
 function quap(
     sm_sam::SampleModel, 
     optim::Dict,
-    cnames::Vector{String})
+    cnames::Vector{String};
+    return_nt=true)
 
     samples = read_samples(sm_sam, :dataframe)
     
@@ -106,8 +121,54 @@ function quap(
         :params => n
     )
     
-    (;dct...)
+    nt = (;dct...)
+    if return_nt
+        return(nt)
+    else
+        return(QuapResult(nt.coef, nt.vcov, nt.converged, nt.distr, nt.params))
+    end
+end
+
+# Used by Max. Need to check if this works in general
+function sample(qr::QuapResult, count::Int)::DataFrame
+    names = qr.params                 # StatsBase.coefnames(mode_result) in Turing
+    means = values(qr.coef)           # StatsBase.coef(mode_result) in Turing
+    sigmas = Diagonal(qr.vcov)        # StatsBase.stderr(mode_result) in Turing
+    
+    DataFrame([
+        name => rand(Normal(μ, σ), count)
+            for (name, μ, σ) ∈ zip(names, means, sigmas)
+    ])
+end
+
+
+function sample(qm::NamedTuple; nsamples=4000)
+  df = DataFrame()
+  p = Particles(nsamples, qm.distr)
+  for (indx, coef) in enumerate(qm.params)
+    if length(qm.params) == 1
+      df[!, coef] = p.particles
+    else
+      df[!, coef] = p[indx].particles
+    end
+  end
+  df
+end
+
+function sample(qm::QuapResult; nsamples=4000)
+  df = DataFrame()
+  p = Particles(nsamples, qm.distr)
+  for (indx, coef) in enumerate(qm.params)
+    if length(qm.params) == 1
+      df[!, coef] = p.particles
+    else
+      df[!, coef] = p[indx].particles
+    end
+  end
+  df
 end
 
 export
-    stan_quap
+    QuapResult,
+    stan_quap,
+    sample
