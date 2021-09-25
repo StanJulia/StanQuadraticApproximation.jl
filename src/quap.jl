@@ -1,5 +1,20 @@
 import StatsBase: stderror, sample
 
+"""
+
+QuapResult
+
+$(FIELDS)
+
+where:
+
+coef                            : NamedTuple with parameter MAP estimates,
+vcov                            : Covariance matric,
+converged                       : Simple check that multiple chains converged,
+distr                           : Distributike to sample from (Normal or MvNormal),
+params                          : Vector of parameter symbols.
+
+"""
 struct QuapResult{
        N <: NamedTuple
 } <: StatsBase.StatisticalModel
@@ -23,11 +38,16 @@ $(SIGNATURES)
 * `model::String`               : Stan Language model
 ``` 
 
-### Optional arguments
+### Keyword arguments
 ```julia
 * `data`                        : Data for model (NamedTuple or Duct)
 * `init`                        : Initial values for parameters (NamedTuple or Dict)
 ``` 
+
+### Reyrns
+```julia
+* `res::QuapResult`              : Returned object
+```
 
 In general using `init` results in better behavior.
 
@@ -35,7 +55,6 @@ In general using `init` results in better behavior.
 function stan_quap(
     name::AbstractString,
     model::AbstractString;
-    return_nt=true,
     kwargs...)
 
 
@@ -57,7 +76,7 @@ function stan_quap(
     end
 
     if success(rc2)
-        qm = quap(sm, optim, cnames; return_nt)
+        qm = quap(sm, optim, cnames)
         return((qm, sm, (optim=optim, cnames=cnames)))
     else
         return((nothing, sm, nothing))
@@ -70,25 +89,12 @@ Compute the quadratic approximation to the posterior distribution.
 
 $(SIGNATURES)
 
-### Required arguments
-```julia
-* `name::String`                : Name for SampleModel
-* `model::String`               : Stan Language model
-``` 
-
-### Optional arguments
-```julia
-* `data`                        : Data for model (NamedTuple or Duct)
-* `init`                        : Initial values for parameters (NamedTuple or Dict)
-``` 
-
 Not exported
 """
 function quap(
     sm_sam::SampleModel, 
     optim::Dict,
-    cnames::Vector{String};
-    return_nt=true)
+    cnames::Vector{String})
 
     samples = read_samples(sm_sam, :dataframe)
     
@@ -112,21 +118,8 @@ function quap(
         !converged && break
     end
 
-    ntcoef = namedtuple(coefnames, coefvalues)
-    dct = OrderedDict(
-        :coef => ntcoef,
-        :vcov => v,
-        :converged => converged,
-        :distr => distr,
-        :params => n
-    )
-    
-    nt = (;dct...)
-    if return_nt
-        return(nt)
-    else
-        return(QuapResult(nt.coef, nt.vcov, nt.converged, nt.distr, nt.params))
-    end
+    ntcoef = namedtuple(coefnames, coefvalues)    
+    return(QuapResult(ntcoef, v, converged, distr, n))
 end
 
 # Used by Max. Need to check if this works in general
@@ -141,7 +134,7 @@ function sample(qr::QuapResult, count::Int)::DataFrame
     ])
 end
 
-
+# Will be deprecated, use QuapResult object
 function sample(qm::NamedTuple; nsamples=4000)
   df = DataFrame()
   p = Particles(nsamples, qm.distr)
@@ -155,6 +148,23 @@ function sample(qm::NamedTuple; nsamples=4000)
   df
 end
 
+"""
+
+Sample from a quadratic approximation to the posterior distribution.
+
+$(SIGNATURES)
+
+### Required arguments
+```julia
+* `qm`                          : QuapResult object (see: `?QuapResult`)
+``` 
+
+### Keyword arguments
+```julia
+* `nsamples = 4000`             : Number of smaples taken from distribution
+``` 
+
+"""
 function sample(qm::QuapResult; nsamples=4000)
   df = DataFrame()
   p = Particles(nsamples, qm.distr)

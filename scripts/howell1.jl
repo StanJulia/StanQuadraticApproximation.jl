@@ -41,9 +41,3 @@ println()
 println()
 mean(Array(sample(qm)), dims=1) |> display
 println()
-
-return_nt = false
-qr, sm, om = stan_quap("s4.1s", stan4_1; return_nt, data, init)
-qr |> display
-println()
-
