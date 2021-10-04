@@ -1,6 +1,10 @@
 module StanQuap
 
-using StatsBase, StanOptimize, StanSample
+using Reexport
+
+@reexport using StanOptimize, StanSample
+
+using StatsBase
 using CSV, DataFrames, Distributions
 using NamedTupleTools, MonteCarloMeasurements
 using DocStringExtensions, Statistics
