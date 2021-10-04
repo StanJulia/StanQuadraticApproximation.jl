@@ -43,4 +43,5 @@ println()
 mean(Array(sample(qm)), dims=1) |> display
 println()
 
-read_samples(sm) |> display
+ka =read_samples(sm)
+ka |> display
