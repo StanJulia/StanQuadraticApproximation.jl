@@ -1,4 +1,5 @@
-using CSV, DataFrames, StanQuap, StanOptimize, Statistics, Test
+using CSV, DataFrames, Statistics, Test
+using StanQuap
 
 ProjDir = @__DIR__
 
@@ -41,3 +42,5 @@ println()
 println()
 mean(Array(sample(qm)), dims=1) |> display
 println()
+
+read_samples(sm) |> display
