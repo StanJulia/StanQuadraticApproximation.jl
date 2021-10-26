@@ -69,7 +69,7 @@ function stan_quap(
                 optim[Symbol(key)] = tmp[key]
             end
         end
-        sm = SampleModel(name, model; tmpdir=om.tmpdir)
+        sm = SampleModel(name, model, om.tmpdir)
         rc2 = stan_sample(sm; kwargs...)
     else
         return ((nothing, nothing, nothing))
