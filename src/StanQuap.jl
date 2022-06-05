@@ -6,7 +6,8 @@ using Reexport
 
 using StatsBase
 using CSV, DataFrames, Distributions
-using NamedTupleTools, MonteCarloMeasurements
+using NamedTupleTools
+using MonteCarloMeasurements
 using DocStringExtensions, Statistics
 using OrderedCollections, LinearAlgebra
 

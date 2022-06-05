@@ -166,6 +166,7 @@ function sample(qr::QuapResult, count::Int)::DataFrame
     ])
 end
 
+#=
 # Will be deprecated, use QuapResult object
 function sample(qm::NamedTuple; nsamples=4000)
   df = DataFrame()
@@ -179,8 +180,7 @@ function sample(qm::NamedTuple; nsamples=4000)
   end
   df
 end
-
-
+=#
 
 export
     QuapResult,
