@@ -1,7 +1,7 @@
 authors = ["Rob J Goedman <goedman@icloud.com>"]
 name = "StanQuap"
 uuid = "e4723793-2808-4fc5-8a98-c57f4c160c53"
-version = "4.2.0"
+version = "4.2.1"
 
 [compat]
 CSV = "0.10"
@@ -13,8 +13,8 @@ NamedTupleTools = "0.14"
 OrderedCollections = "1.4"
 Reexport = "1.2"
 StanBase = "4"
-StanOptimize = "4"
-StanSample = "6"
+StanOptimize = "4.2"
+StanSample = "6.7"
 StatsBase = "0.33"
 julia = "^1"
 
