@@ -35,7 +35,7 @@ pkg> add StanQuap.jl
 You need a working [Stan's cmdstan](https://mc-stan.org/users/interfaces/cmdstan.html) installation, the path of which you should specify either in `CMDSTAN` or `JULIA_CMDSTAN_HOME`, eg in your `~/.julia/config/startup.jl` have a line like
 ```julia
 # CmdStan setup
-ENV["CMDSTAN"] = expanduser("~/src/cmdstan-2.28.2/") # replace with your path
+ENV["CMDSTAN"] = expanduser("~/src/cmdstan-2.34.1/") # replace with your path
 ```
 
 It is recommended that you start your Julia process with multiple worker processes to take advantage of parallel sampling, eg
